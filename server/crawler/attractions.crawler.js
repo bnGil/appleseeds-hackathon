@@ -1,13 +1,8 @@
 import puppeteer from "puppeteer";
 
-import API from "../API/API";
-
-const enArrOfObj = [];
-const heArrOfObj = [];
-const ruArrOfObj = [];
-const arArrOfObj = [];
-
-const languages = ["en", "he", "ar", "ru"];
+import "../db/mongoose.js";
+import { translateTerm } from "../API/translateTerm.js";
+import { addLanguageDataToDB } from "../services/addDataToDB.js";
 
 async function scrapeAttractions() {
   const browser = await puppeteer.launch();
@@ -54,8 +49,10 @@ async function scrapeAttractions() {
     return header.slice(idxOfFirstLet, idxOfLastComma);
   });
 
+  const enArrOfObj = [];
+
   attractions.forEach((attraction, idx) => {
-    arrOfObj[idx] = {
+    enArrOfObj[idx] = {
       country: countries[idx],
       attractionName: attraction,
       imageUrl: imageUrls[idx],
@@ -64,13 +61,40 @@ async function scrapeAttractions() {
   });
 
   browser.close();
+  return enArrOfObj;
 }
 
-scrapeAttractions();
+const ARRofEng = await scrapeAttractions();
 
-const addTranslatedDataToDB = () => {
-  //make hebrew arrOfObj
-  //make arab arrOfObj
-  //make russian arrOfObj
-  //add them to database + english
+const translateArrOfObj = async (languageCode) => {
+  const arrOfTranslatedByCode = await Promise.all(
+    ARRofEng.map(async (obj) => {
+      const country = await translateTerm(obj.country, languageCode);
+      const attractionName = await translateTerm(
+        obj.attractionName,
+        languageCode
+      );
+      const description = await translateTerm(obj.description, languageCode);
+      return {
+        imageUrl: obj.imageUrl,
+        country,
+        attractionName,
+        description,
+      };
+    })
+  );
+
+  return arrOfTranslatedByCode;
 };
+
+const addTranslatedDataToDB = async () => {
+  const arArrOfObj = await translateArrOfObj("ar");
+  const heArrOfObj = await translateArrOfObj("he");
+  const ruArrOfObj = await translateArrOfObj("ru");
+  await addLanguageDataToDB(ARRofEng, "en");
+  await addLanguageDataToDB(arArrOfObj, "ar");
+  await addLanguageDataToDB(heArrOfObj, "he");
+  await addLanguageDataToDB(ruArrOfObj, "ru");
+};
+
+await addTranslatedDataToDB();
