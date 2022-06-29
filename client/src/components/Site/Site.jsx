@@ -9,7 +9,6 @@ function Site({imgSrc, site}) {
   return (
     <div className='Site'>
     <div className='image' style={siteStyle}>
-     {/* <img src={imgSrc}></img> */}
     </div>
      <p>{site}</p>
     </div>

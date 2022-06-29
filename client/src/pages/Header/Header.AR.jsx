@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import LangMenu from "../../components/lang/LangMenu";
 import "./Header.css"
 
-const Header = () => {
+const HeaderAR = () => {
 
   return (
     <div className="Header">
@@ -27,6 +28,7 @@ const Header = () => {
         <Link to={`/quiz`}>
           <div>اختبار</div>
         </Link>
+        <LangMenu/>
         </div>
       </nav>
 
@@ -34,4 +36,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HeaderAR;

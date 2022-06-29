@@ -33,52 +33,24 @@ const HomePage = () => {
         <h1>Top Sites</h1>
         <div className="sites-container">
           <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
+            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/great-wall-china-shutterstock_324699287.jpg"
+            site="Great Wall, China"  
           />
           <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
+            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/jerusalem-israel-shutterstock_52600888.jpg"
+            site="Old City of Jerusalem, Israel"  
           />
           <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
+            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/pyramids-giza-egypt-shutterstock_28525558.jpg"
+            site="Pyramids of Giza, Egypt"  
           />
           <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
+            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/09/havana-cuba-shutterstock_430027549.jpg"
+            site=" Old Havana, Cuba"  
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="India"  
-          />
-          <Site
-            imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/tongariro-national-park-new-zealand-shutterstock_393395857.jpg"
-            site="mor"  
+            site="Taj Mahal, India"  
           />
 
         </div>

@@ -20,13 +20,13 @@ const Header = () => {
         </Link>
         <div className="menu-container">
         <Link to={`/`}>
-          <div className="home">Home</div>
+          <div className="home">HOME</div>
         </Link>
         <Link to={`/attractions`}>
-          <div className="sites">Attractions</div>
+          <div className="sites">ATTRACTIONS</div>
         </Link>
         <Link to={`/quiz`}>
-          <div className="quiz">Quiz</div>
+          <div className="quiz">QUIZ</div>
         </Link>
         <LangMenu/>
         </div>

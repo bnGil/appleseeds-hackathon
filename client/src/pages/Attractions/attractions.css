@@ -1,11 +1,12 @@
 .attractions-container {
   display: flex;
-
   align-items: center;
   flex-direction: column;
-  background: url("../../../public/assets/background1.jpg") no-repeat center center/cover;
-  height: 100vh;
+  /* background: url("../../../public/assets/background1.jpg") no-repeat center center/cover; */
+  height: 100%;
+  margin: 1rem;
 }
+
 .dropdown-container {
   display: flex;
   align-items: center;
