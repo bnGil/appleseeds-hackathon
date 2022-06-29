@@ -1,0 +1,16 @@
+.card-container {
+  width: 15rem;
+  height: 15rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+/* 
+.card-description {
+  line-height: 1.7rem;
+} */
+
+.card-icon, .card-title {
+  color: #333;
+}
