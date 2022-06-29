@@ -1,22 +1,41 @@
 import React from "react";
 import "./attractionDisplay.css";
+import axios from "axios";
 
-const AttractionDisplay = ({ /*   selectedCountry, selectedLanguage, */ data }) => {
-  const getAttractionData = () => {
-    //get data translated by api request with parametes ${selectedCountry}/${selectedLanguage}
-    //I'll get one object (or an array with more than 1?)
-    //for now let's pretend the data is attractionsOfCountry[0]
-    //* attractionsOfCountry.filter((attraction)=>attraction.country === selectedCountry) //I dont think I need it if I get an array of objects from same country
+const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, attractions, dataArr }) => {
+  const getAttractionData = async () => {
+    const { data } = await axios.post(`hackaton.com/${selectedLanguage}/${selectedCountry}`);
+    setAttractions(data);
+  };
+  // const setAttractionsDisplay = () => {
+  //   const attractionsDisplay = attractions.map((attraction, key) => {
+  //     return (
+  //       <div className="attraction" key={key}>
+  //         <h2>
+  //           {attraction.country}: {attraction.attracionName}
+  //         </h2>
+  //         <img src={attraction.imageUrl} alt="attractionsOfCountry.attracionName" />
+  //         <p>{attraction.description}</p>
+  //       </div>
+  //     );
+  //   });
+  //   return attractionsDisplay;
+  // };
+  const setAttractionsDisplay = () => {
     return (
       <React.Fragment>
-        <h2>
-          {data[0].country}: {data[0].attracionName}
-        </h2>
-        <img src={data[0].imageUrl} alt="attractionsOfCountry.attracionName" />
-        <p>{data[0].description}</p>
+        <img src={dataArr[0].imageUrl} alt="attractionsOfCountry.attracionName" />
+        <div className="text">
+          <h2>
+            {dataArr[0].country}: {dataArr[0].attracionName}
+          </h2>
+
+          <p>{dataArr[0].description}</p>
+        </div>
       </React.Fragment>
     );
   };
-  return <div className="attraction-card">{getAttractionData()}</div>;
+
+  return <div className="attraction-cards">{setAttractionsDisplay()}</div>;
 };
 export default AttractionDisplay;

@@ -1,9 +1,43 @@
-.attraction-card {
+.attraction-cards {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin-top: 30px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 20px;
+  padding: 15px;
+}
+.attraction-cards img {
+  max-width: 70%;
+  border-radius: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.text {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 700px;
+  margin-left: 20px;
+  text-align: left;
 }
-.attraction-card img {
-  width: 700px;
+.text h2 {
+  text-align: left;
+}
+.text p {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .attraction-cards {
+    flex-direction: column;
+  }
+  .text {
+    max-width: 90%;
+    text-align: left;
+    align-items: center;
+
+    margin: 0;
+  }
+  .attraction-cards img {
+    max-width: 90%;
+    border-radius: 20px;
+  }
 }
