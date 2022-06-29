@@ -6,7 +6,7 @@
 }
 
 .quiz-container img {
-  max-width: 40%;
+  max-width: 35%;
   border-radius: 20px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin: 20px 0px;
@@ -17,4 +17,20 @@
 }
 .buttons button {
   margin: 10px;
+  background: rgb(94, 201, 227);
+  border: none;
+  padding: 7px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  cursor: pointer;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  font-size: 22px;
+  color: rgb(0, 176, 234);
+  font-weight: bold;
 }
