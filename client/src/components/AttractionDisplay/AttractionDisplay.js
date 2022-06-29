@@ -2,7 +2,7 @@ import React from "react";
 import "./attractionDisplay.css";
 import axios from "axios";
 
-const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, attractions, dataArr }) => {
+const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, attractions, dataLng }) => {
   const getAttractionData = async () => {
     const { data } = await axios.post(`hackaton.com/${selectedLanguage}/${selectedCountry}`);
     setAttractions(data);
@@ -24,13 +24,13 @@ const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, 
   const setAttractionsDisplay = () => {
     return (
       <React.Fragment>
-        <img src={dataArr[0].imageUrl} alt="attractionsOfCountry.attracionName" />
+        <img src={dataLng[0].imageUrl} alt="attractionsOfCountry.attracionName" />
         <div className="text">
           <h2>
-            {dataArr[0].country}: {dataArr[0].attracionName}
+            {dataLng[0].country}: {dataLng[0].attracionName}
           </h2>
 
-          <p>{dataArr[0].description}</p>
+          <p>{dataLng[0].description}</p>
         </div>
       </React.Fragment>
     );
