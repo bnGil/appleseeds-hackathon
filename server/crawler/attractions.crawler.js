@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer";
 
-import API from "../API/API";
+import { translateTerm } from "../API/translateTerm.js";
+import { addLanguageDataToDB } from "../services/addDataToDB.js";
 
 const enArrOfObj = [];
 const heArrOfObj = [];
@@ -55,7 +56,7 @@ async function scrapeAttractions() {
   });
 
   attractions.forEach((attraction, idx) => {
-    arrOfObj[idx] = {
+    enArrOfObj[idx] = {
       country: countries[idx],
       attractionName: attraction,
       imageUrl: imageUrls[idx],
@@ -66,11 +67,4 @@ async function scrapeAttractions() {
   browser.close();
 }
 
-scrapeAttractions();
-
-const addTranslatedDataToDB = () => {
-  //make hebrew arrOfObj
-  //make arab arrOfObj
-  //make russian arrOfObj
-  //add them to database + english
-};
+await scrapeAttractions();
