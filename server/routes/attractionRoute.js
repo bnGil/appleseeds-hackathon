@@ -6,8 +6,11 @@ import {
 
 const attractionsRoute = new express.Router();
 
-attractionsRoute.get("/attractions/eng", getAllAttractions);
+attractionsRoute.get("/attractions/:languageCode", getAllAttractions);
 
-attractionsRoute.get("/attractions/eng/:country", getAttractionByCountry);
+attractionsRoute.get(
+  "/attractions/:languageCode/:country",
+  getAttractionByCountry
+);
 
 export default attractionsRoute;
