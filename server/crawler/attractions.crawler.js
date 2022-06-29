@@ -2,11 +2,6 @@ import puppeteer from "puppeteer";
 import { translateTerm } from "../API/translateTerm.js";
 // import API from "../API/API";
 
-const enArrOfObj = [];
-const heArrOfObj = [];
-const ruArrOfObj = [];
-const arArrOfObj = [];
-
 const languages = ["en", "he", "ar", "ru"];
 
 async function scrapeAttractions() {
@@ -54,6 +49,8 @@ async function scrapeAttractions() {
     return header.slice(idxOfFirstLet, idxOfLastComma);
   });
 
+  const enArrOfObj = [];
+
   attractions.forEach((attraction, idx) => {
     enArrOfObj[idx] = {
       country: countries[idx],
@@ -68,30 +65,35 @@ async function scrapeAttractions() {
 }
 
 const ARRofEng = await scrapeAttractions();
-// console.log(ARRofEng);
-// scrapeAttractions();
 
-// 1 ==> ToDo
-//make hebrew arrOfObj
-//make arab arrOfObj
-//make russian arrOfObj
-//add them to database + english
-//  translateTerm()
+const translateArrOfObj = async (languageCode) => {
+  const arrOfTranslatedByCode = await Promise.all(
+    ARRofEng.map(async (obj) => {
+      const country = await translateTerm(obj.country, languageCode);
+      const attractionName = await translateTerm(
+        obj.attractionName,
+        languageCode
+      );
+      const description = await translateTerm(obj.description, languageCode);
+      return {
+        country,
+        attractionName,
+        description,
+      };
+    })
+  );
 
-const translateArrOfObj =async  (languageCode) => {
-  const ArrOfHe = ARRofEng.map((obj) => {
-    const country =await translateTerm(obj.country, languageCode)
-    const attractionName = await translateTerm(obj.attractionName, languageCode)
-    const description = await translateTerm(obj.description, languageCode)
-  return {
-
-    country,
-    attractionName,
-    description ,
-  }
-      
-  });
-  console.log(ArrOfHe);
+  return arrOfTranslatedByCode;
 };
 
-await translateArrOfObj("he");
+const addTranslatedDataToDB = async () => {
+  const arArrOfObj = await translateArrOfObj("ar");
+  const heArrOfObj = await translateArrOfObj("he");
+  const ruArrOfObj = await translateArrOfObj("ru");
+  addLanguageDataToDB(ARRofEng, "en");
+  addLanguageDataToDB(arArrOfObj, "ar");
+  addLanguageDataToDB(heArrOfObj, "he");
+  addLanguageDataToDB(ruArrOfObj, "ru");
+};
+
+await addTranslatedDataToDB();
