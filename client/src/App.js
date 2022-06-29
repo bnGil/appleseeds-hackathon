@@ -5,7 +5,7 @@ import "./App.css";
 import Attractions from "./pages/Attractions/Attractions";
 import Quiz from "./pages/Quiz/Quiz.jsx";
 import Header from "./pages/Header/Header";
-// import Homepage from "./pages/homepage/Homepage";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          {/*  <Route exact path="/" component={Homepage} />*/}
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/attractions" component={Attractions} />
           <Route exact path="/quiz" component={Quiz} />
         </Switch>

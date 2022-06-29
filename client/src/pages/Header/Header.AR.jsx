@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import LangMenu from "../../components/lang/LangMenu";
 import "./Header.css"
 
 const Header = () => {
@@ -20,15 +19,14 @@ const Header = () => {
         </Link>
         <div className="menu-container">
         <Link to={`/`}>
-          <div className="home">Home</div>
+          <div>الصفحة الرئيسية</div>
         </Link>
         <Link to={`/attractions`}>
-          <div className="sites">Attractions</div>
+          <div>جميع المواقع</div>
         </Link>
         <Link to={`/quiz`}>
-          <div className="quiz">Quiz</div>
+          <div>اختبار</div>
         </Link>
-        <LangMenu/>
         </div>
       </nav>
 
