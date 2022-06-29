@@ -1,5 +1,9 @@
 import puppeteer from "puppeteer";
-import fs from "fs";
+
+import API from "../API/API";
+
+const arrOfObj = [];
+const languages = ["en", "he", "ar", "ru"];
 
 async function scrapeAttractions() {
   const browser = await puppeteer.launch();
@@ -15,7 +19,6 @@ async function scrapeAttractions() {
         return image.getAttribute("data-lazy-src");
       })
   );
-  console.log(imageUrls.length);
 
   const headers = await page.$$eval(
     "#genesis-content > article > div.entry-content > h2",
@@ -47,7 +50,33 @@ async function scrapeAttractions() {
     return header.slice(idxOfFirstLet, idxOfLastComma);
   });
 
+  attractions.forEach((attraction, idx) => {
+    arrOfObj[idx] = {
+      country: countries[idx],
+      attractionName: attraction,
+      imageUrl: imageUrls[idx],
+      description: descriptions[idx],
+    };
+  });
+
   browser.close();
 }
 
 scrapeAttractions();
+
+const translateTerm = (term, languageCode) => {
+  const params = {
+    "to[0]": languageCode,
+    "api-version": "3.0",
+    profanityAction: "NoAction",
+    textType: "plain",
+  };
+  const data = `[{"Text":${term}}]`;
+};
+
+const addTranslatedDataToDB = () => {
+  //make hebrew arrOfObj
+  //make arab arrOfObj
+  //make russian arrOfObj
+  //add them to database + english
+};
