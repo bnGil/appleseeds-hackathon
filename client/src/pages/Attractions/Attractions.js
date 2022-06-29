@@ -11,7 +11,7 @@ const attractionsOfCountry = [
     attracionName: "bla bla",
     imageUrl: "https://www.roadaffair.com/wp-content/uploads/2017/12/angkor-wat-cambodia-shutterstock_167952836.jpg",
     description:
-      "description description description description description description description description description description description description description description description description description description description description ",
+      "description description description deseiption desddon description description description description deeetion description description description desception deiption eiption description description descriptioeription ",
   },
   {
     id: 12,
@@ -40,6 +40,7 @@ const Attractions = () => {
   const [dataArr, setDataArr] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [attractions, setAttractions] = useState([]);
   useEffect(() => {
     //get data from api
     //save it with setDataArr
@@ -51,16 +52,26 @@ const Attractions = () => {
   console.log(selectedLanguage);
   return (
     <div className="attractions-container">
-      <Dropdown
-        data={dataArr}
-        setSelected={setSelectedCountry}
-        setSelectedLanguage={setSelectedLanguage}
-        selectType={"countries"}
-      />
-      <Dropdown setSelected={setSelectedLanguage} selectType={"languages"} />
+      <div className="dropdown-container">
+        <Dropdown setSelected={setSelectedLanguage} selectType={"language"} setSelectedCountry={setSelectedCountry} />
+
+        <Dropdown
+          data={dataArr}
+          setSelected={setSelectedCountry}
+          selectType={"country"}
+          selectedLanguage={selectedLanguage}
+          selectedCountry={selectedCountry}
+        />
+      </div>
 
       {selectedCountry && selectedLanguage && (
-        <AttractionDisplay selectedCountry={selectedCountry} selectedLanguage={selectedLanguage} data={dataArr} />
+        <AttractionDisplay
+          selectedCountry={selectedCountry}
+          selectedLanguage={selectedLanguage}
+          dataArr={dataArr}
+          setAttractions={setAttractions}
+          attractions={attractions}
+        />
       )}
     </div>
   );
