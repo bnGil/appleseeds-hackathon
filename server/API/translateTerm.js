@@ -32,3 +32,4 @@ export const translateTerm = async (term, languageCode) => {
     console.log(err.message);
   }
 };
+// console.log(await translateTerm("my name is sobhi", "ar"));

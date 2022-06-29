@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import cors from "cors";
 import { fileURLToPath } from "url";
+import attractionsRoute from "./routes/attractionRoute.js";
 
 import "./db/mongoose.js";
 
@@ -15,6 +16,8 @@ app.use(express.static(publicPath));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+app.use(attractionsRoute);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));

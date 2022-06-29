@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
-
-import API from "../API/API";
+import { translateTerm } from "../API/translateTerm.js";
+// import API from "../API/API";
 
 const enArrOfObj = [];
 const heArrOfObj = [];
@@ -55,7 +55,7 @@ async function scrapeAttractions() {
   });
 
   attractions.forEach((attraction, idx) => {
-    arrOfObj[idx] = {
+    enArrOfObj[idx] = {
       country: countries[idx],
       attractionName: attraction,
       imageUrl: imageUrls[idx],
@@ -64,13 +64,34 @@ async function scrapeAttractions() {
   });
 
   browser.close();
+  return enArrOfObj;
 }
 
-scrapeAttractions();
+const ARRofEng = await scrapeAttractions();
+// console.log(ARRofEng);
+// scrapeAttractions();
 
-const addTranslatedDataToDB = () => {
-  //make hebrew arrOfObj
-  //make arab arrOfObj
-  //make russian arrOfObj
-  //add them to database + english
+// 1 ==> ToDo
+//make hebrew arrOfObj
+//make arab arrOfObj
+//make russian arrOfObj
+//add them to database + english
+//  translateTerm()
+
+const translateArrOfObj =async  (languageCode) => {
+  const ArrOfHe = ARRofEng.map((obj) => {
+    const country =await translateTerm(obj.country, languageCode)
+    const attractionName = await translateTerm(obj.attractionName, languageCode)
+    const description = await translateTerm(obj.description, languageCode)
+  return {
+
+    country,
+    attractionName,
+    description ,
+  }
+      
+  });
+  console.log(ArrOfHe);
 };
+
+await translateArrOfObj("he");
