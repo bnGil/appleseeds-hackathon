@@ -1,20 +1,21 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Attractions from "./pages/Attractions/Attractions";
-
-import "./App.css";
 import React from "react";
-// import Header from "./components/header/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
+
+import Attractions from "./pages/Attractions/Attractions";
+import Quiz from "./pages/Quiz/Quiz.jsx";
+import Header from "./pages/Header/Header";
 // import Homepage from "./pages/homepage/Homepage";
-// import About from "./pages/about/About";
 
 function App() {
   return (
     <React.Fragment>
       <Router>
-        {/*      <Header /> */}
+        <Header />
         <Switch>
           {/*  <Route exact path="/" component={Homepage} />*/}
           <Route exact path="/attractions" component={Attractions} />
+          <Route exact path="/quiz" component={Quiz} />
         </Switch>
       </Router>
     </React.Fragment>
