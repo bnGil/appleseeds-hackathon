@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/app.js",
+    "client": "npm start --prefix client",
     "start": "node server/app.js",
     "install-client": "cd client && npm install && npm run build && cd ..",
     "heroku-postbuild": "npm run install-client"
