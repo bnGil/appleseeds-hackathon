@@ -1,24 +1,40 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import { useData } from "./context/Context";
 
 import Attractions from "./pages/Attractions/Attractions";
 import Quiz from "./pages/Quiz/Quiz.jsx";
 import Header from "./pages/Header/Header";
+import HeaderAR from "./pages/Header/Header.AR";
 import HomePage from "./pages/HomePage/HomePage";
+import HomePageAR from "./pages/HomePage/HomePage.AR";
 
 function App() {
+  const { language } = useData();
   return (
-    <React.Fragment>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/attractions" component={Attractions} />
-          <Route exact path="/quiz" component={Quiz} />
-        </Switch>
-      </Router>
-    </React.Fragment>
+    <div className="App">
+      <React.Fragment>
+        <Router>
+          {language === "AR" ? <HeaderAR /> : <Header />}
+          <Switch>
+            {language === "AR" ? (
+              <>
+                <Route exact path="/" component={HomePageAR} />
+                <Route exact path="/attractions" component={Attractions} />
+                <Route exact path="/quiz" component={Quiz} />
+              </>
+            ) : (
+              <>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/attractions" component={Attractions} />
+                <Route exact path="/quiz" component={Quiz} />
+              </>
+            )}
+          </Switch>
+        </Router>
+      </React.Fragment>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import Card from "../../components/Card/Card";
 import Site from "../../components/Site/Site";
 import "./HomePage.css"
 
-const HomePage = () => {
+const HomePageAR = () => {
 
   return (
     <div className="HomePage">
@@ -87,4 +87,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomePageAR;

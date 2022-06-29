@@ -4,7 +4,7 @@ import "./LangMenu.css"
 
 const LangMenu = () => {
   const {language, setLanguage} = useData()
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(false)
 
   function handleClick() {
     toggle ? setToggle(false) : setToggle(true)
@@ -12,14 +12,15 @@ const LangMenu = () => {
 
   function handleLanguage(e) {
     setLanguage(e.target.innerHTML)
+    setToggle(false)
   }
     return (
   <div className="dropdown">
-    <button onClick={handleClick} className="dropbtn">EN</button>
+    <button onClick={handleClick} className="dropbtn">{language}</button>
     {toggle && <div id="myDropdown" className="dropdown-content">
-      <a onClick={handleLanguage} href="#">EN</a>
-      <a onClick={handleLanguage} href="#">AR</a>
-      <a onClick={handleLanguage} href="#">HE</a>
+      <div onClick={handleLanguage}>EN</div>
+      <div onClick={handleLanguage}>AR</div>
+      <div onClick={handleLanguage}>HE</div>
     </div>}
   </div>
     )
