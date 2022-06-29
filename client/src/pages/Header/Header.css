@@ -14,7 +14,7 @@
 }
 
 .Header nav .logo-container .img-container {
-  width: 2rem;
+  width: 3rem;
 }
 
 .Header nav .logo-container  {
@@ -26,7 +26,7 @@
 
 .Header nav .logo-container .top {
   font-family: 'Lexend Zetta', sans-serif;
-  color: #3d84a8;
+  color: #569ec2;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -45,25 +45,28 @@
   margin: 0;
   letter-spacing: 0.1rem;
 }
+
 .Header nav .logo-container img {
   width: 100%;
 }
 
 .Header nav .menu-container {
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: flex;
   justify-content: space-between;
-  color: #3d84a8;
-  font-weight: 700;
-  letter-spacing: 0.1rem;
+  align-items: center;
+  font-weight: 400;
   gap: 1rem;
 }
 
-
 .Header nav .menu-container div {
   padding: 0.8rem 1.2rem;
+  color: #569ec2;
 }
-.Header nav .menu-container div:hover {
+
+.Header nav .menu-container .home:hover,
+.Header nav .menu-container .sites:hover,
+.Header nav .menu-container .quiz:hover {
   background-color: #569ec2 ;
   color: white;
   border-radius: 3px;
