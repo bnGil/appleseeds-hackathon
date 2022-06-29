@@ -1,7 +1,8 @@
 import axios from "axios";
 import "dotenv/config";
+import { isRtlLang } from "rtl-detect";
 
-const translateTerm = async (term, languageCode) => {
+export const translateTerm = async (term, languageCode) => {
   const options = {
     method: "POST",
     url: "https://microsoft-translator-text.p.rapidapi.com/translate",
@@ -16,18 +17,18 @@ const translateTerm = async (term, languageCode) => {
       "X-RapidAPI-Key": process.env.TRANSLATE_API_KEY,
       "X-RapidAPI-Host": process.env.TRANSLATE_API_HOST,
     },
-    data: `[{"Text":${term}}]`,
+    data: `[{"Text":"${term}"}]`,
   };
 
   try {
     const { data } = await axios.request(options);
-    console.log(data);
+    const translatedTerm = data[0].translations[0].text;
+    if (isRtlLang(languageCode)) {
+      return translatedTerm.split("").reverse().join("");
+    } else {
+      return translatedTerm;
+    }
   } catch (err) {
     console.log(err.message);
   }
 };
-
-translateTerm(
-  "I would really like to drive your car around the block a few times.",
-  "he"
-);
