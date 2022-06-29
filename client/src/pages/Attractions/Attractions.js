@@ -48,20 +48,20 @@ const Attractions = () => {
   const [spinner, setSpinner] = useState(false);
   useEffect(() => {
     setSpinner(true);
-    //!change it when i get api end point
-    // if (selectedLanguage) {
-    //   try {
-    //     const getData = async () => {
-    //       const { data } = await axios.get(`balbla/${selectedLanguage}`);
-    //       setDataLng(data);
-    //       setSpinner(false);
-    //     };
-    //     getData();
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    setDataLng(attractionsOfCountry);
+
+    if (selectedLanguage) {
+      try {
+        const getData = async () => {
+          //!change to ${selectedLanguage}
+          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}`);
+          setDataLng(data);
+          setSpinner(false);
+        };
+        getData();
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }, [selectedLanguage]);
 
   return (
@@ -90,6 +90,7 @@ const Attractions = () => {
           dataLng={dataLng}
           setAttractions={setAttractions}
           attractions={attractions}
+          setSpinner={setSpinner}
         />
       )}
     </div>
