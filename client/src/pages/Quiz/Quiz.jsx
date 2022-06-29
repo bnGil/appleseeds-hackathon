@@ -24,7 +24,12 @@ const Quiz = () => {
 
   return (
     <div className="quiz">
-      <Dropdown setSelected={setSelectedLanguage} selectType={"language"} />
+      <div className="top">
+        <a href="https://tripexplorer.herokuapp.com/quiz">
+          <button>Reset</button>
+        </a>
+        <Dropdown setSelected={setSelectedLanguage} selectType={"language"} />
+      </div>
       {dataLng.length > 0 && <QuizDisplay dataLng={dataLng} />}
     </div>
   );
