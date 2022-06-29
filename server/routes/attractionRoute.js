@@ -1,25 +1,13 @@
-import mockData from "./mockData.js";
 import express from "express";
+import {
+  getAllAttractions,
+  getAttractionByCountry,
+} from "../controllers/attractions.controllers.js";
 
-const app = express();
-app.use(express.json());
+const attractionsRoute = new express.Router();
 
-app.get("/attractions/english", (req, res) => {
-  const countries = mockData.map((obj) => {
-    return obj;
-  });
-  res.send(countries);
-});
+attractionsRoute.get("/attractions/eng", getAllAttractions);
 
-app.get("/attractions/english/:country", (req, res) => {
-  const { country } = req.params;
-  const objOfCountryAttractions = mockData.filter((obj) => {
-    return obj.country === country;
-  });
+attractionsRoute.get("/attractions/eng/:country", getAttractionByCountry);
 
-  res.send(objOfCountryAttractions);
-});
-
-app.listen(3001, () => {
-  console.log(`the server up in port 3001 `);
-});
+export default attractionsRoute;
