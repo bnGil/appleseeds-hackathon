@@ -1,24 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./attractionDisplay.css";
-import axios from "axios";
+import API from "../../api/API.js";
 
-const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, attractions, dataLng, setSpinner }) => {
+const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, attractions }) => {
   useEffect(() => {
-    setSpinner(true);
-
     if (selectedLanguage && selectedCountry) {
       try {
         const getAttractionData = async () => {
-          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}/${selectedCountry}`);
+          const { data } = await API.get(`/${selectedLanguage}/${selectedCountry}`);
           setAttractions(data);
-          setSpinner(false);
         };
         getAttractionData();
       } catch (err) {
         console.log(err);
       }
     }
-  }, [selectedLanguage, selectedCountry]);
+  }, [selectedLanguage, selectedCountry, setAttractions]);
 
   const setAttractionsDisplay = () => {
     const attractionsDisplay = attractions.map((attraction, key) => {
