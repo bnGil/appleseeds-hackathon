@@ -1,17 +1,8 @@
-import axios from "axios";
 import React from "react";
 import Select from "react-select";
 import "./dropdown.css";
 
-const Dropdown = ({
-  dataLng,
-  setSelected,
-  selectType,
-  setSelectedCountry,
-  selectedLanguage,
-  selectedCountry,
-  isCountrySelected,
-}) => {
+const Dropdown = ({ dataLng, setSelected, selectType, setSelectedCountry, isCountrySelected }) => {
   const insertOptions = () => {
     const options = [];
     if (selectType === "country") {

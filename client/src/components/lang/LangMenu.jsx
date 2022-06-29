@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useData } from "../../context/Context";
-import "./LangMenu.css"
+import "./LangMenu.css";
 
 const LangMenu = () => {
   const {language, setLanguage} = useData()
   const [toggle, setToggle] = useState(false)
 
   function handleClick() {
-    toggle ? setToggle(false) : setToggle(true)
+    toggle ? setToggle(false) : setToggle(true);
   }
 
   function handleLanguage(e) {

@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Dropdown from "../../components/DropDown/Dropdown";
 import AttractionDisplay from "../../components/AttractionDisplay/AttractionDisplay";
 import "./attractions.css";
+import API from "../../api/API.js";
 
 const Attractions = () => {
-  //data from API
   const [dataLng, setDataLng] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [attractions, setAttractions] = useState([]);
-  const [spinner, setSpinner] = useState(false);
+  // const [spinner, setSpinner] = useState(false);
   useEffect(() => {
-    setSpinner(true);
+    // setSpinner(true);
 
     if (selectedLanguage) {
-      console.log(selectedLanguage);
-      const getData = async () => {
-        //!change to ${selectedLanguage}
-        try {
-          const { data } = await axios.get(
-            `http://localhost:5050/attractions/${selectedLanguage}`
-          );
+      try {
+        const getData = async () => {
+          const { data } = await API.get(`/${selectedLanguage}`);
           setDataLng(data);
-          setSpinner(false);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      getData();
+          // setSpinner(false);
+        };
+        getData();
+      } catch (err) {
+        console.log(err);
+      }
     }
   }, [selectedLanguage]);
 
@@ -58,7 +53,6 @@ const Attractions = () => {
           dataLng={dataLng}
           setAttractions={setAttractions}
           attractions={attractions}
-          setSpinner={setSpinner}
         />
       )}
     </div>
