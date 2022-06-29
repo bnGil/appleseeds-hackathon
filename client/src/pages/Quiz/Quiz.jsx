@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Dropdown from "../../components/DropDown/Dropdown";
 import QuizDisplay from "../../components/QuizDisplay/QuizDisplay";
 import "./quiz.css";
+import API from "../../api/API.js";
 
 const Quiz = () => {
   const [dataLng, setDataLng] = useState([]);
   const [selectedLanguage, setSelectedLanguage] = useState("");
-  const [spinner, setSpinner] = useState(false);
 
   useEffect(() => {
     if (selectedLanguage) {
-      setSpinner(true);
       try {
         const getData = async () => {
-          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}`);
+          const { data } = await API.get(`/${selectedLanguage}`);
           setDataLng(data);
-          setSpinner(false);
         };
         getData();
       } catch (err) {
