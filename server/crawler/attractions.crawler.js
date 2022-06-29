@@ -2,7 +2,11 @@ import puppeteer from "puppeteer";
 
 import API from "../API/API";
 
-const arrOfObj = [];
+const enArrOfObj = [];
+const heArrOfObj = [];
+const ruArrOfObj = [];
+const arArrOfObj = [];
+
 const languages = ["en", "he", "ar", "ru"];
 
 async function scrapeAttractions() {
@@ -63,16 +67,6 @@ async function scrapeAttractions() {
 }
 
 scrapeAttractions();
-
-const translateTerm = (term, languageCode) => {
-  const params = {
-    "to[0]": languageCode,
-    "api-version": "3.0",
-    profanityAction: "NoAction",
-    textType: "plain",
-  };
-  const data = `[{"Text":${term}}]`;
-};
 
 const addTranslatedDataToDB = () => {
   //make hebrew arrOfObj
