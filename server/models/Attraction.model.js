@@ -15,10 +15,6 @@ const AttractionSchema = new Schema({
   description: {
     type: String,
   },
-  language: {
-    type: Schema.Types.ObjectId,
-    ref: Language,
-  },
 });
 
 export const Attraction = mongoose.model("Attraction", AttractionSchema);
