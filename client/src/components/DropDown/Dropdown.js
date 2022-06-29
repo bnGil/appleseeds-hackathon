@@ -23,8 +23,9 @@ const Dropdown = ({
       });
     } else if (selectType === "language") {
       const languages = ["English", "Hebrew", "Arabic", "Russian"];
-      languages.forEach((language) => {
-        const obj = { value: `${language}`, label: `${language}` };
+      const languagesCodes = ["en", "he", "ar", "ru"];
+      languages.forEach((language, idx) => {
+        const obj = { value: `${languagesCodes[idx]}`, label: `${language}` };
         options.push(obj);
       });
     }
