@@ -53,7 +53,7 @@ const Attractions = () => {
       try {
         const getData = async () => {
           //!change to ${selectedLanguage}
-          const { data } = await axios.get(`http://localhost:5000/attractions/eng`);
+          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}`);
           setDataLng(data);
           setSpinner(false);
         };

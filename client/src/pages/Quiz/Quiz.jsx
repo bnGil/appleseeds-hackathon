@@ -14,10 +14,8 @@ const Quiz = () => {
       setSpinner(true);
       try {
         const getData = async () => {
-          //! ${selectedLanguage}
-          const { data } = await axios.get(`http://localhost:5000/attractions/eng`);
+          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}`);
           setDataLng(data);
-
           setSpinner(false);
         };
         getData();

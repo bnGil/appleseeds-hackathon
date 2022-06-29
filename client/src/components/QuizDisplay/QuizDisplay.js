@@ -13,39 +13,15 @@ const QuizDisplay = ({ dataLng }) => {
     return index;
   };
 
-  //add  to useeffect anytime when currentAttraction changed
-  // const getRandomAttraction = () => {
-  //   const index = Math.floor(Math.random() * attractionsByLanguage.length);
-  //   setCurrentAttraction(attractionsByLanguage[index]);
-  //   const newArr = [...attractionsByLanguage];
-  //   newArr.splice(index, 1); //removing so there wont be duplicates
-  //   setAttractionsByLanguage(newArr);
-  // };
-
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
   }
-  // const setAnswers = () => {
-  //   const answers = [currentAttraction.country];
-  //   let i = 0;
-  //   while (i < 3) {
-  //     const answer = attractionsByLanguage[getRandomIndex()];
-  //     if (answers.includes(answer)) {
-  //       continue;
-  //     } else {
-  //       answers.push(answer);
-  //       i++;
-  //     }
-  //   }
-
-  //   setAllAnswers(shuffle(answers));
-  // };
-  // console.log(currentAttraction);
 
   useEffect(() => {
-    setIsClicked(false);
+    // setIsClicked(false);
     const index = Math.floor(Math.random() * attractionsByLanguage.length);
-    setCurrentAttraction(attractionsByLanguage[index]);
+    const tempAttraction = attractionsByLanguage[index];
+    setCurrentAttraction(tempAttraction);
     const newArr = [...attractionsByLanguage];
 
     newArr.splice(index, 1); //removing so there wont be duplicates
@@ -53,11 +29,8 @@ const QuizDisplay = ({ dataLng }) => {
     setAttractionsByLanguage(newArr);
     console.log("newArr length", newArr);
     console.log("attractionsByLanguage", attractionsByLanguage);
-    // setAnswers();
-    // getRandomAttraction();
-    // setSpinner(true);
-    // setAnswers();
-    const answers = [currentAttraction.attractionName];
+
+    const answers = [tempAttraction.attractionName];
     console.log(answers);
     for (let i = 0; i < 3; i++) {
       const index2 = Math.floor(Math.random() * newArr.length);
@@ -65,17 +38,7 @@ const QuizDisplay = ({ dataLng }) => {
       const answer = attractionsByLanguage[index2];
       answers.push(answer.attractionName);
     }
-    // let i = 0;
-    // while (i < 3) {
-    //   const answer = attractionsByLanguage[Math.floor(Math.random() * attractionsByLanguage.length)];
-    //   console.log("answer", answer);
-    //   if (answers.includes(answer.country)) {
-    //     continue;
-    //   } else {
-    //     answers.push(answer.country);
-    //     i++;
-    //   }
-    // }
+
     console.log(answers);
     setAllAnswers(shuffle(answers));
   }, []);
@@ -86,7 +49,7 @@ const QuizDisplay = ({ dataLng }) => {
       return allAnswers.map((answer, key) => {
         return (
           <div key={key}>
-            <button>{answer}</button>
+            <button value={answer}>{answer}</button>
           </div>
         );
       });
@@ -102,3 +65,20 @@ const QuizDisplay = ({ dataLng }) => {
 };
 
 export default QuizDisplay;
+
+// const setAnswers = () => {
+//   const answers = [currentAttraction.country];
+//   let i = 0;
+//   while (i < 3) {
+//     const answer = attractionsByLanguage[getRandomIndex()];
+//     if (answers.includes(answer)) {
+//       continue;
+//     } else {
+//       answers.push(answer);
+//       i++;
+//     }
+//   }
+
+//   setAllAnswers(shuffle(answers));
+// };
+// console.log(currentAttraction);

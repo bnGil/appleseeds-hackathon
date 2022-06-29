@@ -9,8 +9,7 @@ const AttractionDisplay = ({ selectedCountry, selectedLanguage, setAttractions, 
     if (selectedLanguage && selectedCountry) {
       try {
         const getAttractionData = async () => {
-          //!change to ${selectedLanguage}
-          const { data } = await axios.get(`http://localhost:5000/attractions/eng/${selectedCountry}`);
+          const { data } = await axios.get(`http://localhost:5000/attractions/${selectedLanguage}/${selectedCountry}`);
           setAttractions(data);
           setSpinner(false);
         };

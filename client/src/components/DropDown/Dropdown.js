@@ -16,7 +16,7 @@ const Dropdown = ({
     const options = [];
     if (selectType === "country") {
       const countriesRawData = dataLng.map((obj) => obj.country);
-      const countries = [...new Set(countriesRawData)]; //without duplicates
+      const countries = [...new Set(countriesRawData)].sort(); //without duplicates
       countries.forEach((country) => {
         const obj = { value: `${country}`, label: `${country}` };
         options.push(obj);
@@ -37,12 +37,6 @@ const Dropdown = ({
     if (isCountrySelected === "isCountrySelected") {
       setSelectedCountry("");
     }
-
-    // } else if (selectType === "country") {
-    //   setSelected(value.value); //set country
-    //   const { data } = await axios.get(`hackaton.com/${selectedLanguage}/${selectedCountry}`);
-    //   selectedLanguage;
-    // }
   };
   return (
     <div className="select">
