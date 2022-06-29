@@ -76,6 +76,7 @@ const translateArrOfObj = async (languageCode) => {
       );
       const description = await translateTerm(obj.description, languageCode);
       return {
+        imageUrl: obj.imageUrl,
         country,
         attractionName,
         description,

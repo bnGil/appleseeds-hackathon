@@ -1,6 +1,5 @@
 import axios from "axios";
 import "dotenv/config";
-import { isRtlLang } from "rtl-detect";
 
 export const translateTerm = async (term, languageCode) => {
   const options = {
@@ -23,13 +22,8 @@ export const translateTerm = async (term, languageCode) => {
   try {
     const { data } = await axios.request(options);
     const translatedTerm = data[0].translations[0].text;
-    if (isRtlLang(languageCode)) {
-      return translatedTerm.split("").reverse().join("");
-    } else {
-      return translatedTerm;
-    }
+    return translatedTerm;
   } catch (err) {
     console.log(err.message);
   }
 };
-// console.log(await translateTerm("my name is sobhi", "ar"));

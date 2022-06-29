@@ -1,11 +1,19 @@
 import mockData from "../routes/mockData.js";
+import { Language } from "../models/Language.model.js";
+import { Attraction } from "../models/Attraction.model.js";
 
 export const getAllAttractions = async (req, res) => {
+  const { languageCode } = req.params;
   try {
-    const countries = mockData.map((obj) => {
-      return obj;
+    const { attractions } = await Language.findOne({ languageCode });
+
+    const attractionsObjs = await Attraction.find({
+      _id: {
+        $in: [...attractions],
+      },
     });
-    res.send(countries);
+
+    res.status(200).send(attractionsObjs);
   } catch (err) {
     res.status(400).send(err.message);
   }
