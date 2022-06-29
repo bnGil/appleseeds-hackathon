@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const LanguageSchema = new Schema({
-  language: {
+  languageCode: {
     type: String,
   },
   attractions: [

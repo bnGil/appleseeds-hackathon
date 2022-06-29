@@ -1,10 +1,8 @@
 import puppeteer from "puppeteer";
 
+import "../db/mongoose.js";
 import { translateTerm } from "../API/translateTerm.js";
 import { addLanguageDataToDB } from "../services/addDataToDB.js";
-import { translateTerm } from "../API/translateTerm.js";
-
-const languages = ["en", "he", "ar", "ru"];
 
 async function scrapeAttractions() {
   const browser = await puppeteer.launch();
@@ -66,8 +64,6 @@ async function scrapeAttractions() {
   return enArrOfObj;
 }
 
-await scrapeAttractions();
-
 const ARRofEng = await scrapeAttractions();
 
 const translateArrOfObj = async (languageCode) => {
@@ -94,10 +90,10 @@ const addTranslatedDataToDB = async () => {
   const arArrOfObj = await translateArrOfObj("ar");
   const heArrOfObj = await translateArrOfObj("he");
   const ruArrOfObj = await translateArrOfObj("ru");
-  addLanguageDataToDB(ARRofEng, "en");
-  addLanguageDataToDB(arArrOfObj, "ar");
-  addLanguageDataToDB(heArrOfObj, "he");
-  addLanguageDataToDB(ruArrOfObj, "ru");
+  await addLanguageDataToDB(ARRofEng, "en");
+  await addLanguageDataToDB(arArrOfObj, "ar");
+  await addLanguageDataToDB(heArrOfObj, "he");
+  await addLanguageDataToDB(ruArrOfObj, "ru");
 };
 
 await addTranslatedDataToDB();
