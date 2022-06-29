@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Dropdown from "../../components/DropDown/Dropdown";
 import AttractionDisplay from "../../components/AttractionDisplay/AttractionDisplay";
 import "./attractions.css";
@@ -9,27 +10,30 @@ const attractionsOfCountry = [
     id: 11,
     country: "China",
     attracionName: "bla bla",
-    imageUrl: "https://www.roadaffair.com/wp-content/uploads/2017/12/angkor-wat-cambodia-shutterstock_167952836.jpg",
+    imageUrl: "https://www.roadaffair.com/wp-content/uploads/2017/12/forbidden-city-china-shutterstock_297209894.jpg",
     description:
-      "description description description deseiption desddon description description description description deeetion description description description desception deiption eiption description description descriptioeription ",
+      "description description description description description description description description description description description description description description description description description description description description ",
   },
   {
     id: 12,
-    country: "China",
+    country: "spain",
     attracionName: "bla bla 2",
-    imageUrl: "img2.src",
+    imageUrl:
+      "https://www.roadaffair.com/wp-content/uploads/2017/09/park-guell-barcelona-spain-shutterstock_261614468.jpg",
   },
   {
     id: 13,
     country: "China",
     attracionName: "bla bla 3",
-    imageUrl: "img3.src",
+    imageUrl:
+      "https://www.roadaffair.com/wp-content/uploads/2017/12/leshan-giant-buddha-china-shutterstock_197940701.jpg",
   },
   {
     id: 14,
     country: "Germany",
     attracionName: "bla bla 4",
-    imageUrl: "img4.src",
+    imageUrl:
+      "https://www.roadaffair.com/wp-content/uploads/2017/10/neuschwanstein-castle-germany-shutterstock_620565122.jpg",
   },
 ];
 
@@ -37,26 +41,41 @@ const attractionsOfCountry = [
 
 const Attractions = () => {
   //data from API
-  const [dataArr, setDataArr] = useState([]);
+  const [dataLng, setDataLng] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
   const [attractions, setAttractions] = useState([]);
+  const [spinner, setSpinner] = useState(false);
   useEffect(() => {
-    //get data from api
-    //save it with setDataArr
-    //call insertAttractions()
-    setDataArr(attractionsOfCountry);
-  }, []);
-  // console.log(dataArr);
-  console.log(selectedCountry);
-  console.log(selectedLanguage);
+    setSpinner(true);
+    //!change it when i get api end point
+    // if (selectedLanguage) {
+    //   try {
+    //     const getData = async () => {
+    //       const { data } = await axios.get(`balbla/${selectedLanguage}`);
+    //       setDataLng(data);
+    //       setSpinner(false);
+    //     };
+    //     getData();
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    setDataLng(attractionsOfCountry);
+  }, [selectedLanguage]);
+
   return (
     <div className="attractions-container">
       <div className="dropdown-container">
-        <Dropdown setSelected={setSelectedLanguage} selectType={"language"} setSelectedCountry={setSelectedCountry} />
+        <Dropdown
+          setSelected={setSelectedLanguage}
+          selectType={"language"}
+          setSelectedCountry={setSelectedCountry}
+          isCountrySelected={"isCountrySelected"}
+        />
 
         <Dropdown
-          data={dataArr}
+          dataLng={dataLng}
           setSelected={setSelectedCountry}
           selectType={"country"}
           selectedLanguage={selectedLanguage}
@@ -68,7 +87,7 @@ const Attractions = () => {
         <AttractionDisplay
           selectedCountry={selectedCountry}
           selectedLanguage={selectedLanguage}
-          dataArr={dataArr}
+          dataLng={dataLng}
           setAttractions={setAttractions}
           attractions={attractions}
         />

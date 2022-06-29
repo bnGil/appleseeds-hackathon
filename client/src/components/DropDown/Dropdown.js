@@ -3,11 +3,19 @@ import React from "react";
 import Select from "react-select";
 import "./dropdown.css";
 
-const Dropdown = ({ data, setSelected, selectType, setSelectedCountry, selectedLanguage, selectedCountry }) => {
+const Dropdown = ({
+  dataLng,
+  setSelected,
+  selectType,
+  setSelectedCountry,
+  selectedLanguage,
+  selectedCountry,
+  isCountrySelected,
+}) => {
   const insertOptions = () => {
     const options = [];
     if (selectType === "country") {
-      const countriesRawData = data.map((obj) => obj.country);
+      const countriesRawData = dataLng.map((obj) => obj.country);
       const countries = [...new Set(countriesRawData)]; //without duplicates
       countries.forEach((country) => {
         const obj = { value: `${country}`, label: `${country}` };
@@ -25,13 +33,13 @@ const Dropdown = ({ data, setSelected, selectType, setSelectedCountry, selectedL
 
   const onHandleChange = (value) => {
     setSelected(value.value);
-    if (selectType === "language") {
+    if (isCountrySelected === "isCountrySelected") {
       setSelectedCountry("");
     }
 
     // } else if (selectType === "country") {
     //   setSelected(value.value); //set country
-    //   const { data } = await axios.post(`hackaton.com/${selectedLanguage}/${selectedCountry}`);
+    //   const { data } = await axios.get(`hackaton.com/${selectedLanguage}/${selectedCountry}`);
     //   selectedLanguage;
     // }
   };
