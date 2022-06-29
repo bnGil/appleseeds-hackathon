@@ -1,6 +1,9 @@
 import puppeteer from "puppeteer";
+
+
 import { translateTerm } from "../API/translateTerm.js";
-// import API from "../API/API";
+import { addLanguageDataToDB } from "../services/addDataToDB.js";
+import { translateTerm } from "../API/translateTerm.js";
 
 const enArrOfObj = [];
 const heArrOfObj = [];
@@ -67,6 +70,8 @@ async function scrapeAttractions() {
   return enArrOfObj;
 }
 
+await scrapeAttractions();
+
 const ARRofEng = await scrapeAttractions();
 // console.log(ARRofEng);
 // scrapeAttractions();
@@ -95,3 +100,13 @@ const translateArrOfObj =async  (languageCode) => {
 };
 
 await translateArrOfObj("he");
+
+// const addTranslatedDataToDB = () => {
+//   addLanguageDataToDB(enArrOfObj, "en");
+//   addLanguageDataToDB(arArrOfObj, "ar");
+//   addLanguageDataToDB(heArrOfObj, "he");
+//   addLanguageDataToDB(ruArrOfObj, "ru");
+// };
+
+// addTranslatedDataToDB();
+
