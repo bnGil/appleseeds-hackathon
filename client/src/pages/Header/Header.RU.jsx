@@ -19,13 +19,13 @@ const HeaderRU = () => {
         </Link>
         <div className="menu-container">
           <Link to={`/`}>
-            <div className="home">HOME</div>
+            <div className="home">ДОМОЙ</div>
           </Link>
           <Link to={`/attractions`}>
-            <div className="sites">ATTRACTIONS</div>
+            <div className="sites">АТРАКЦИИ</div>
           </Link>
           <Link to={`/quiz`}>
-            <div className="quiz">QUIZ</div>
+            <div className="quiz">ТЕСТ</div>
           </Link>
           <LangMenu />
         </div>

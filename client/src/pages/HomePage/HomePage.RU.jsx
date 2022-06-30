@@ -8,7 +8,7 @@ const HomePageRU = () => {
       <section className="banner">
         <div className="section-bg"></div>
         <div className="text">
-          <p>DISCOVER AMAZING PLACES AROUND THE WORLD</p>
+          <p>Откроет новые и удивительные места по всему миру </p>
         </div>
       </section>
       <section className="cards-container">
@@ -37,8 +37,8 @@ const HomePageRU = () => {
               ></path>
             </svg>
           }
-          title="Memorable Experiences"
-          desc="Browse activities so incredible, you'll never forget."
+          title="Незабываемые впечатления"
+          desc="С нашей помощью вы попадете в новый и удивительный мир"
         />
         <Card
           svg={
@@ -65,8 +65,8 @@ const HomePageRU = () => {
               ></path>
             </svg>
           }
-          title="Stay Up to Date"
-          desc="We're updating our site all the time, stay tuned!"
+          title="Оставаться с нами на связи"
+          desc="Мы постоянно обновляем и улучшаем сайт для вас"
         />
         <Card
           svg={
@@ -95,32 +95,32 @@ const HomePageRU = () => {
               ></path>
             </svg>
           }
-          title="Test Your Knowledge"
-          desc="Check out our quiz to see if you're a bucketlist master."
+          title="Проверьте свои знания"
+          desc="Пройдите наш тест, возможно вы наш новый bucketlist."
         />
       </section>
       <section className="top-sites">
-        <h1>TOP SITES</h1>
+        <h1>ТОП МЕСТ</h1>
         <div className="sites-container">
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/great-wall-china-shutterstock_324699287.jpg"
-            site="Great Wall, China"
+            site="Великая стена, Китай"
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/jerusalem-israel-shutterstock_52600888.jpg"
-            site="Old City of Jerusalem, Israel"
+            site="Старый город Иерусалима, Израиль"
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/pyramids-giza-egypt-shutterstock_28525558.jpg"
-            site="Pyramids of Giza, Egypt"
+            site="Пирамиды Гизы, Египет"
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/09/havana-cuba-shutterstock_430027549.jpg"
-            site=" Old Havana, Cuba"
+            site="Старая Гавана, Куба"
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
-            site="Taj Mahal, India"
+            site="Тадж-Махал, Индия"
           />
         </div>
       </section>
