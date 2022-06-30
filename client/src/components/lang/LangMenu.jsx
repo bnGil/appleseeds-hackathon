@@ -21,6 +21,7 @@ const LangMenu = () => {
       <div onClick={handleLanguage}>EN</div>
       <div onClick={handleLanguage}>AR</div>
       <div onClick={handleLanguage}>HE</div>
+      <div onClick={handleLanguage}>RU</div>
     </div>}
   </div>
     )

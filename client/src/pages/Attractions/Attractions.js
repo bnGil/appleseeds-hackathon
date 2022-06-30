@@ -9,42 +9,41 @@ const Attractions = () => {
   const { language } = useData();
   const [dataLng, setDataLng] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    language.toLowerCase()
+  );
   const [attractions, setAttractions] = useState([]);
   // const [spinner, setSpinner] = useState(false);
   useEffect(() => {
     // setSpinner(true);
-    setSelectedLanguage(language.toLowerCase());
-    console.log(selectedLanguage);
-    if (selectedLanguage) {
+    const getData = async () => {
       try {
-        const getData = async () => {
-          const { data } = await API.get(`/${selectedLanguage}`);
-          setDataLng(data);
-          // setSpinner(false);
-        };
-        getData();
+        const { data } = await API.get(`/${language.toLowerCase()}`);
+        setDataLng(data);
       } catch (err) {
         console.log(err);
       }
-    }
-  }, [selectedLanguage, language]);
+
+      // setSpinner(false);
+    };
+    getData();
+  }, [language]);
 
   return (
     <div className="attractions-container">
       <div className="dropdown-container">
-        <Dropdown
+        {/* <Dropdown
           setSelected={setSelectedLanguage}
           selectType={"language"}
           setSelectedCountry={setSelectedCountry}
           isCountrySelected={"isCountrySelected"}
-        />
+        /> */}
 
         <Dropdown
           dataLng={dataLng}
           setSelected={setSelectedCountry}
           selectType={"country"}
-          selectedLanguage={selectedLanguage}
+          selectedLanguage={language.toLowerCase()}
           selectedCountry={selectedCountry}
         />
       </div>
@@ -52,7 +51,7 @@ const Attractions = () => {
       {selectedCountry && "en" && (
         <AttractionDisplay
           selectedCountry={selectedCountry}
-          selectedLanguage={selectedLanguage}
+          selectedLanguage={language.toLowerCase()}
           dataLng={dataLng}
           setAttractions={setAttractions}
           attractions={attractions}
