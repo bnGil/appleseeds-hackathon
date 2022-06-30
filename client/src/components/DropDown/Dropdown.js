@@ -2,7 +2,16 @@ import React from "react";
 import Select from "react-select";
 import "./dropdown.css";
 
-const Dropdown = ({ dataLng, setSelected, selectType, setSelectedCountry, isCountrySelected }) => {
+// import { useData } from "../../context/Context";
+
+const Dropdown = ({
+  dataLng,
+  setSelected,
+  selectType,
+  setSelectedCountry,
+  isCountrySelected,
+}) => {
+  // const { language } = useData();
   const insertOptions = () => {
     const options = [];
     if (selectType === "country") {
@@ -31,7 +40,11 @@ const Dropdown = ({ dataLng, setSelected, selectType, setSelectedCountry, isCoun
   };
   return (
     <div className="select">
-      <Select options={insertOptions()} onChange={onHandleChange} placeholder={`select ${selectType}`} />
+      <Select
+        options={insertOptions()}
+        onChange={onHandleChange}
+        placeholder={`select ${selectType}`}
+      />
     </div>
   );
 };
