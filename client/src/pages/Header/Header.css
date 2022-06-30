@@ -26,7 +26,7 @@
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 1rem;
- border-radius: 3px;
+  border-radius: 3px;
 }
 
 .Header nav .logo-container .top {
@@ -35,6 +35,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .Header nav .logo-container .big {
