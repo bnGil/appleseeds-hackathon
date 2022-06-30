@@ -46,7 +46,7 @@ const HomePage = () => {
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/09/havana-cuba-shutterstock_430027549.jpg"
-            site=" Old Havana, Cuba"  
+            site="Old Havana, Cuba"  
           />
           <Site
             imgSrc="https://www.roadaffair.com/wp-content/uploads/2017/12/taj-mahal-india-shutterstock_180918317.jpg"
