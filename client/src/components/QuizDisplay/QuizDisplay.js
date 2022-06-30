@@ -10,7 +10,8 @@ const QuizDisplay = ({ dataLng }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
-  // const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [isDisabled, setIsDisabled] = useState(false);
 
   function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
@@ -37,24 +38,27 @@ const QuizDisplay = ({ dataLng }) => {
   }, [isClicked]);
 
   const onHandleClick = (e) => {
+    setIsDisabled(true);
     if (e.target.value === currentAttraction.attractionName) {
       setIsCorrect(true);
       setTimeout(() => {
         setIsCorrect(false);
         setIsClicked((prev) => !prev);
-      }, 2000);
+        setIsDisabled(false);
+      }, 1000);
       setCounterCorrect((prev) => prev + 1);
     } else {
       setIsWrong(true);
       setTimeout(() => {
         setIsWrong(false);
         setIsClicked((prev) => !prev);
-      }, 2000);
+        setIsDisabled(false);
+      }, 1000);
       setCounterWrong((prev) => prev + 1);
     }
-    // if (isCorrect + isCorrect === 20) {
-    //   setMessage("");
-    // }
+    if (counterCorrect + counterWrong === 20) {
+      setMessage(`You guessed ${counterCorrect} places out of 20.`);
+    }
   };
   console.log(counterCorrect, counterWrong);
   const insertQuiz = () => {
@@ -62,7 +66,7 @@ const QuizDisplay = ({ dataLng }) => {
       return allAnswers.map((answer, key) => {
         return (
           <div key={key}>
-            <button value={answer} onClick={onHandleClick}>
+            <button value={answer} onClick={onHandleClick} disabled={isDisabled}>
               {answer}
             </button>
           </div>
@@ -72,13 +76,19 @@ const QuizDisplay = ({ dataLng }) => {
     return (
       <React.Fragment>
         <img src={currentAttraction.imageUrl} alt="attraction" />
-        {isCorrect && <p>Correct answer! </p>}
-        {isWrong && <p>{`Wrong answer :(`} </p>}
+        {isCorrect && <p style={{ color: "green", fontWeight: "bold" }}>Correct answer! </p>}
+        {isWrong && <p style={{ color: "red", fontWeight: "bold" }}>{`Wrong answer :(`} </p>}
         <div className="buttons">{getButtons()}</div>
       </React.Fragment>
     );
   };
-  return <div className="quiz-container">{Object.keys(currentAttraction).length !== 0 && insertQuiz()}</div>;
+
+  return (
+    <div className="quiz-container">
+      {Object.keys(currentAttraction).length !== 0 && !message && insertQuiz()}
+      {message && <div className="message">{message}</div>}
+    </div>
+  );
 };
 
 export default QuizDisplay;
