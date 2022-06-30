@@ -3,8 +3,10 @@ import Dropdown from "../../components/DropDown/Dropdown";
 import AttractionDisplay from "../../components/AttractionDisplay/AttractionDisplay";
 import "./attractions.css";
 import API from "../../api/API.js";
+import { useData } from "../../context/Context";
 
 const Attractions = () => {
+  const { language } = useData();
   const [dataLng, setDataLng] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("");
@@ -12,7 +14,8 @@ const Attractions = () => {
   // const [spinner, setSpinner] = useState(false);
   useEffect(() => {
     // setSpinner(true);
-
+    setSelectedLanguage(language.toLowerCase());
+    console.log(selectedLanguage);
     if (selectedLanguage) {
       try {
         const getData = async () => {
@@ -25,7 +28,7 @@ const Attractions = () => {
         console.log(err);
       }
     }
-  }, [selectedLanguage]);
+  }, [selectedLanguage, language]);
 
   return (
     <div className="attractions-container">
@@ -46,7 +49,7 @@ const Attractions = () => {
         />
       </div>
 
-      {selectedCountry && selectedLanguage && (
+      {selectedCountry && "en" && (
         <AttractionDisplay
           selectedCountry={selectedCountry}
           selectedLanguage={selectedLanguage}
